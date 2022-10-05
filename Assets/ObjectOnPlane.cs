@@ -9,7 +9,7 @@ using UnityEngine.XR.ARSubsystems;
 public class ObjectOnPlane : MonoBehaviour
 {
     [SerializeField] private GameObject _placedPrefab;
-    [SerializeField] private GameObject _selectedObjectPrefab;
+    [SerializeField] private GameObject _selectionObjectPrefab;
 
     public GameObject SpawnedObject { get; private set; }
     public GameObject PlacedPrefab { get => _placedPrefab; set => _placedPrefab = value; }
@@ -40,7 +40,6 @@ public class ObjectOnPlane : MonoBehaviour
         else
         {
             SpawnedObject.transform.position = hit.position;
-            SpawnedObject.transform.rotation = hit.rotation;
         }
 
         OnObjectPlacedEvent?.Invoke();
@@ -48,7 +47,7 @@ public class ObjectOnPlane : MonoBehaviour
 
     private void DisableVisual()
     {
-        _selectedObjectPrefab.SetActive(false);
+        _selectionObjectPrefab.SetActive(false);
     }
 
     private static bool TryGetTouchPosition(out Vector2 touch)
